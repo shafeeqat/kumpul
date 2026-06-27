@@ -59,23 +59,11 @@ In the Realtime Database console, click the **Rules** tab and replace everything
     },
     "groups": {
       "$groupId": {
-        ".read": "auth != null && (root.child('groups/' + $groupId + '/members/' + auth.uid).exists() || root.child('groups/' + $groupId + '/admins/' + auth.uid).exists())",
+        ".read": "auth != null && (root.child('groups/' + $groupId + '/members/' + auth.uid).exists() || root.child('groups/' + $groupId + '/admins/' + auth.uid).exists() || auth.token.email === 'shaf.r210003@gmail.com')",
+        ".write": "auth != null && (auth.token.email === 'shaf.r210003@gmail.com' || root.child('groups/' + $groupId + '/admins/' + auth.uid).exists())",
         "name": { ".read": "auth != null" },
-        "inviteCode": { ".read": "auth != null && (root.child('groups/' + $groupId + '/admins/' + auth.uid).exists() || auth.token.email === 'shaf.r210003@gmail.com')" },
-        "admins": {
-          ".write": "auth != null && (root.child('groups/' + $groupId + '/admins/' + auth.uid).exists() || auth.token.email === 'shaf.r210003@gmail.com')"
-        },
-        "members": {
-          ".write": "auth != null && (root.child('groups/' + $groupId + '/admins/' + auth.uid).exists() || auth.token.email === 'shaf.r210003@gmail.com')"
-        },
-        "pending": {
-          "$uid": {
-            ".read": "auth != null && (auth.uid === $uid || root.child('groups/' + $groupId + '/admins/' + auth.uid).exists())",
-            ".write": "auth != null && (auth.uid === $uid || root.child('groups/' + $groupId + '/admins/' + auth.uid).exists() || auth.token.email === 'shaf.r210003@gmail.com')"
-          }
-        },
+        "inviteCode": { ".read": "auth != null" },
         "availability": {
-          ".read": "auth != null && root.child('groups/' + $groupId + '/members/' + auth.uid).exists()",
           "$date": {
             "$uid": {
               ".write": "auth != null && auth.uid === $uid && root.child('groups/' + $groupId + '/members/' + auth.uid).exists()"
@@ -83,8 +71,13 @@ In the Realtime Database console, click the **Rules** tab and replace everything
           }
         },
         "lepak": {
-          ".read": "auth != null && root.child('groups/' + $groupId + '/members/' + auth.uid).exists()",
           ".write": "auth != null && root.child('groups/' + $groupId + '/members/' + auth.uid).exists()"
+        },
+        "pending": {
+          "$uid": {
+            ".read": "auth != null && (auth.uid === $uid || root.child('groups/' + $groupId + '/admins/' + auth.uid).exists() || auth.token.email === 'shaf.r210003@gmail.com')",
+            ".write": "auth != null && (auth.uid === $uid || root.child('groups/' + $groupId + '/admins/' + auth.uid).exists() || auth.token.email === 'shaf.r210003@gmail.com')"
+          }
         }
       }
     }

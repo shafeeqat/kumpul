@@ -1039,15 +1039,15 @@ const firebaseConfig = {
     const gid = activeGroupId;
 
     const rAdmins = ref(db, `groups/${gid}/admins`);
-    onValue(rAdmins, snap => { activeGroupAdmins = snap.val() || {}; showAdminButtons(); });
+    onValue(rAdmins, snap => { activeGroupAdmins = snap.val() || {}; showAdminButtons(); }, e => console.error('admins listener:', e));
     dataRefs.push(rAdmins);
 
     const rMembers = ref(db, `groups/${gid}/members`);
-    onValue(rMembers, snap => { allUsers = snap.val() || {}; redraw(); renderUpcomingLepak(); });
+    onValue(rMembers, snap => { allUsers = snap.val() || {}; redraw(); renderUpcomingLepak(); }, e => console.error('members listener:', e));
     dataRefs.push(rMembers);
 
     const rAvail = ref(db, `groups/${gid}/availability`);
-    onValue(rAvail, snap => { availability = snap.val() || {}; redraw(); });
+    onValue(rAvail, snap => { availability = snap.val() || {}; redraw(); }, e => console.error('availability listener:', e));
     dataRefs.push(rAvail);
 
     const rNotif = ref(db, `notifications/${me.uid}`);
@@ -1056,7 +1056,7 @@ const firebaseConfig = {
       myNotifications = Object.entries(data).map(([id, n]) => ({ id, ...n })).sort((a, b) => b.ts - a.ts);
       renderNotifBadge();
       if (notifPanelOpen) renderNotifPanel();
-    });
+    }, e => console.error('notif listener:', e));
     dataRefs.push(rNotif);
 
     const rLepak = ref(db, `groups/${gid}/lepak`);
@@ -1064,11 +1064,11 @@ const firebaseConfig = {
       lepakPlans = snap.val() || {};
       renderUpcomingLepak();
       if (activeView === 'sessions') renderSessionsView();
-    });
+    }, e => console.error('lepak listener:', e));
     dataRefs.push(rLepak);
 
     const rPending = ref(db, `groups/${gid}/pending`);
-    onValue(rPending, snap => { pendingRequests = snap.val() || {}; updateRequestsBadge(); });
+    onValue(rPending, snap => { pendingRequests = snap.val() || {}; updateRequestsBadge(); }, e => console.error('pending listener:', e));
     dataRefs.push(rPending);
   }
 
@@ -1104,6 +1104,8 @@ const firebaseConfig = {
       await set(ref(db, `userGroups/${me.uid}/${gRef.key}`), true);
       document.getElementById('create-group-modal').style.display = 'none';
       enterGroup(gRef.key, name);
+    } catch(e) {
+      alert('Failed to create group: ' + e.message + '\n\nMake sure you have updated the Firebase Database Rules (see SETUP.md Step 4).');
     } finally { btn.disabled = false; btn.textContent = 'Create Group'; }
   });
 
