@@ -231,7 +231,7 @@
   <aside class="hidden md:flex h-screen w-64 fixed left-0 top-0 flex-col p-4 gap-8 bg-[#0E0E0F] z-50 border-r border-outline-variant/10 editorial-shadow">
     <div class="flex flex-col gap-1 px-2 pt-1">
       <span class="text-primary font-black uppercase tracking-[0.1em] text-xs">Kumpul</span>
-      <span id="sb-group-name" class="text-[#353436] text-[10px] uppercase font-bold tracking-widest truncate">–</span>
+      <span id="sb-group-name" class="text-outline/60 text-xs uppercase font-bold tracking-widest truncate">–</span>
     </div>
     <nav class="flex flex-col gap-1.5 flex-grow">
       <a class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer text-outline hover:text-primary hover:bg-surface-container/60" data-view="availability">
@@ -287,7 +287,7 @@
         <button id="mob-menu-btn" class="md:hidden text-outline hover:text-primary transition-colors p-1.5 rounded-lg hover:bg-surface-container -ml-1">
           <span class="material-symbols-outlined text-2xl">menu</span>
         </button>
-        <h1 class="font-headline text-lg md:text-2xl font-bold tracking-tighter text-primary">Kumpul<span id="hdr-group-name" class="text-outline/60 font-normal text-sm ml-2 hidden md:inline"></span></h1>
+        <h1 class="font-headline text-lg md:text-2xl font-bold tracking-tighter text-primary">Kumpul<span class="text-outline/30 font-normal mx-2">|</span><span id="hdr-group-name" class="text-outline/60 font-bold"></span></h1>
       </div>
       <div class="flex items-center gap-3 md:gap-4">
         <div class="relative">
@@ -632,7 +632,10 @@
 <!-- Mobile drawer -->
 <div id="mob-drawer">
   <div class="flex items-center justify-between px-5 py-5 border-b border-outline-variant/10">
-    <span class="text-primary font-black uppercase tracking-[0.1em] text-xs">Kumpul</span>
+    <div class="flex flex-col gap-1">
+      <span class="text-primary font-black uppercase tracking-[0.1em] text-xs">Kumpul</span>
+      <span id="mob-group-name" class="text-outline/60 text-xs uppercase font-bold tracking-widest truncate">–</span>
+    </div>
     <button id="mob-drawer-close" class="text-outline hover:text-primary p-1 rounded-lg hover:bg-surface-container transition-colors">
       <span class="material-symbols-outlined text-xl">close</span>
     </button>
@@ -879,18 +882,25 @@ const firebaseConfig = {
   async function processInviteLink(groupId, code) {
     try {
       const codeSnap = await get(ref(db, `groups/${groupId}/inviteCode`));
-      if (!codeSnap.exists() || codeSnap.val() !== code) { alert('Invalid or expired invite link.'); return; }
-      const memberSnap = await get(ref(db, `groups/${groupId}/members/${me.uid}`));
-      if (memberSnap.exists()) return;
-      const pendSnap = await get(ref(db, `groups/${groupId}/pending/${me.uid}`));
-      if (pendSnap.exists()) return;
+      if (!codeSnap.exists()) { alert('This invite link is no longer valid.'); return; }
+      if (codeSnap.val() !== code) { alert('Invalid invite link — the code does not match.'); return; }
+      // Check own membership and pending status (rules allow reading own $uid)
+      const [memberSnap, pendSnap] = await Promise.all([
+        get(ref(db, `groups/${groupId}/members/${me.uid}`)),
+        get(ref(db, `groups/${groupId}/pending/${me.uid}`))
+      ]);
+      if (memberSnap.exists()) return; // already a member — just proceed to groups view
+      if (pendSnap.exists()) return;   // already pending — just proceed to groups view
       await set(ref(db, `groups/${groupId}/pending/${me.uid}`), {
         name: me.displayName || me.email, email: me.email,
         photoURL: me.photoURL || '', requestedAt: Date.now()
       });
       await set(ref(db, `userPending/${me.uid}/${groupId}`), true);
-      const admSnap = await get(ref(db, `groups/${groupId}/admins`));
-      const gNameSnap = await get(ref(db, `groups/${groupId}/name`));
+      // Notify admins (admins node is publicly readable with updated rules)
+      const [admSnap, gNameSnap] = await Promise.all([
+        get(ref(db, `groups/${groupId}/admins`)),
+        get(ref(db, `groups/${groupId}/name`))
+      ]);
       const gName = gNameSnap.val() || 'the group';
       const adminUids = admSnap.val() ? Object.keys(admSnap.val()) : [];
       for (const uid of adminUids)
@@ -899,7 +909,10 @@ const firebaseConfig = {
       url.searchParams.delete('join');
       history.replaceState({}, '', url.toString());
       pendingJoinGroupId = null; pendingJoinCode = null;
-    } catch(e) { console.error('Join error:', e); }
+    } catch(e) {
+      console.error('Join error:', e);
+      alert('Could not process the invite link. Please try again or ask the admin to reshare it.');
+    }
   }
 
   // ── Groups view ────────────────────────────────────────────────────────────
@@ -1006,8 +1019,9 @@ const firebaseConfig = {
     document.getElementById('groups-view').style.display = 'none';
     document.getElementById('app-view').style.display    = 'block';
 
-    const sbGn = document.getElementById('sb-group-name');
-    if (sbGn) sbGn.textContent = groupName;
+    ['sb-group-name', 'mob-group-name'].forEach(id => {
+      const el = document.getElementById(id); if (el) el.textContent = groupName;
+    });
     const hdrGn = document.getElementById('hdr-group-name');
     if (hdrGn) hdrGn.textContent = groupName;
 

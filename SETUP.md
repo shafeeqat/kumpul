@@ -63,6 +63,10 @@ In the Realtime Database console, click the **Rules** tab and replace everything
         ".write": "auth != null && (auth.token.email === 'shaf.r210003@gmail.com' || root.child('groups/' + $groupId + '/admins/' + auth.uid).exists())",
         "name": { ".read": "auth != null" },
         "inviteCode": { ".read": "auth != null" },
+        "admins": { ".read": "auth != null" },
+        "members": {
+          "$uid": { ".read": "auth != null && auth.uid === $uid" }
+        },
         "availability": {
           "$date": {
             "$uid": {
