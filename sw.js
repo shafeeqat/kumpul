@@ -1,4 +1,4 @@
-const CACHE = 'pendam-v1';
+const CACHE = 'kumpul-v1';
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.add('./')));

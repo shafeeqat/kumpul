@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-  <title>Pendam.Santai — Lepak Calendar</title>
+  <title>Kumpul — When Are You Free?</title>
   <link rel="manifest" href="manifest.json"/>
   <meta name="theme-color" content="#131314"/>
   <meta name="mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-  <meta name="apple-mobile-web-app-title" content="Pendam"/>
+  <meta name="apple-mobile-web-app-title" content="Kumpul"/>
   <link rel="apple-touch-icon" href="icons/icon-192.png"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -155,85 +155,70 @@
      LOGIN VIEW
      ══════════════════════════════════════════════════════════════════════════ -->
 <div id="login-view" class="min-h-screen flex items-center justify-center px-5 py-10 selection:bg-primary selection:text-on-primary">
-  <div class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-16 items-center">
-
-    <div class="lg:col-span-7 mb-8 lg:mb-0 space-y-8">
-      <div class="space-y-3 text-center lg:text-left">
-        <h1 class="text-4xl sm:text-6xl md:text-8xl font-headline font-extrabold tracking-tighter text-on-surface leading-none">
-          Pendam<span class="text-primary">.سانتاي</span>
-        </h1>
-        <p class="text-base sm:text-xl md:text-2xl font-body text-on-surface-variant font-light tracking-tight">
-          Sebab "Next Week On..", "Plan Ah..", "Jom.." Selalu Scam.
-        </p>
+  <div class="w-full max-w-md">
+    <div class="text-center mb-12 space-y-3">
+      <h1 class="text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-none">Kumpul</h1>
+      <p class="text-base text-on-surface-variant">"Next week lah" never actually happens.</p>
+    </div>
+    <div class="glass-panel p-8 rounded-xl editorial-shadow border border-white/10 relative overflow-hidden">
+      <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+      <h2 class="text-xl font-headline font-bold text-on-surface mb-2">Sign in to get started</h2>
+      <p class="text-on-surface-variant font-body text-sm font-light leading-relaxed mb-8">Mark your free days and plan hangouts with your friends.</p>
+      <button id="signin-btn" class="w-full flex items-center justify-center gap-4 py-5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/30 rounded-xl transition-all active:scale-[0.98] font-body font-semibold text-on-surface tracking-wide">
+        <svg width="20" height="20" viewBox="0 0 18 18" aria-hidden="true">
+          <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.717v2.258h2.908C16.658 14.013 17.64 11.706 17.64 9.2z" fill="#4285F4"/>
+          <path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"/>
+          <path d="M3.964 10.707A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.707V4.961H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.039l3.007-2.332z" fill="#FBBC05"/>
+          <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.961L3.964 7.293C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+        </svg>
+        Continue with Google
+      </button>
+      <div id="join-notice" style="display:none" class="mt-5 p-3 rounded-lg bg-primary/5 border border-primary/15 flex items-center gap-2">
+        <span class="material-symbols-outlined text-primary text-base">group_add</span>
+        <p class="text-xs text-primary font-bold">You have a group invite — sign in to join.</p>
       </div>
-      <!-- Mobile: single image strip + quote -->
-      <div class="relative md:hidden mt-4">
-        <div class="flex gap-3 h-40">
-          <div class="flex-1 rounded-xl overflow-hidden bg-surface-container-low border border-white/5 relative">
-            <img id="login-img-left" class="w-full h-full object-cover grayscale contrast-125 opacity-50" src="" alt=""/>
-            <div class="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-transparent"></div>
-          </div>
-          <div class="flex-1 rounded-xl overflow-hidden bg-surface-container-low border border-white/5 relative">
-            <img id="login-img-right" class="w-full h-full object-cover grayscale contrast-110 opacity-50" src="" alt=""/>
-            <div class="absolute inset-0 bg-gradient-to-l from-background/60 via-transparent to-transparent"></div>
-          </div>
-        </div>
-        <div class="mt-4 flex items-center gap-4">
-          <div class="h-[1px] w-10 bg-outline-variant"></div>
-          <span id="login-quote" class="text-[9px] font-label uppercase tracking-[0.3em] text-outline"></span>
-        </div>
-      </div>
-
-      <!-- Desktop: staggered two-column layout -->
-      <div class="relative hidden md:block">
-        <div class="absolute -top-12 -left-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
-        <div class="grid grid-cols-2 gap-6">
-          <div class="aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low border border-white/5 relative group">
-            <img id="login-img-left-d" class="w-full h-full object-cover grayscale contrast-125 opacity-40 group-hover:opacity-60 transition-opacity duration-700" src="" alt=""/>
-            <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
-          </div>
-          <div class="aspect-[4/5] mt-16 rounded-xl overflow-hidden bg-surface-container-low border border-white/5 relative group">
-            <img id="login-img-right-d" class="w-full h-full object-cover grayscale contrast-110 opacity-40 group-hover:opacity-60 transition-opacity duration-700" src="" alt=""/>
-            <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
-          </div>
-        </div>
-        <div class="mt-10 flex items-center gap-6">
-          <div class="h-[1px] w-16 bg-outline-variant"></div>
-          <span id="login-quote-d" class="text-[10px] font-label uppercase tracking-[0.4em] text-outline"></span>
-        </div>
+      <div class="mt-8 flex items-center justify-center gap-3">
+        <div class="w-2 h-2 rounded-full bg-tertiary animate-pulse shadow-[0_0_12px_rgba(193,206,145,0.4)]"></div>
+        <span class="text-xs font-body text-on-surface-variant tracking-wide">Systems Operational</span>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="lg:col-span-5">
-      <div class="glass-panel p-8 md:p-14 rounded-xl editorial-shadow border border-white/10 relative overflow-hidden">
-        <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-        <header class="mb-10">
-          <h2 class="text-3xl font-headline font-bold text-on-surface mb-3">Welcome back</h2>
-          <p class="text-on-surface-variant font-body text-sm font-light leading-relaxed">
-            Sign in to mark your free days and figure out when to lepak with the gang.
-          </p>
-        </header>
-        <button id="signin-btn" class="w-full flex items-center justify-center gap-4 py-5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/30 rounded-xl transition-all active:scale-[0.98] font-body font-semibold text-on-surface tracking-wide">
-          <svg width="20" height="20" viewBox="0 0 18 18" aria-hidden="true">
-            <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.717v2.258h2.908C16.658 14.013 17.64 11.706 17.64 9.2z" fill="#4285F4"/>
-            <path d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.258c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"/>
-            <path d="M3.964 10.707A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.707V4.961H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.039l3.007-2.332z" fill="#FBBC05"/>
-            <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.961L3.964 7.293C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
-          </svg>
-          Continue with Google
-        </button>
-        <div class="mt-10 flex items-center gap-4">
-          <div class="h-[1px] flex-1 bg-outline-variant/20"></div>
-          <span class="text-[10px] font-label uppercase tracking-[0.3em] text-outline">Pendam Only</span>
-          <div class="h-[1px] flex-1 bg-outline-variant/20"></div>
+<!-- ══════════════════════════════════════════════════════════════════════════
+     GROUPS VIEW
+     ══════════════════════════════════════════════════════════════════════════ -->
+<div id="groups-view" style="display:none" class="min-h-screen flex items-center justify-center px-5 py-10">
+  <div class="w-full max-w-lg">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-outline mb-1">Kumpul</p>
+        <h1 class="text-3xl font-headline font-extrabold text-on-surface">Your Groups</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/30 bg-surface-container flex items-center justify-center">
+          <img id="gv-photo" class="w-full h-full object-cover" src="" alt="" onerror="this.style.display='none';document.getElementById('gv-initials').style.display='flex'"/>
+          <span id="gv-initials" style="display:none" class="text-[10px] font-bold text-primary w-full h-full flex items-center justify-center"></span>
         </div>
-        <div class="mt-8 flex items-center justify-center gap-3">
-          <div class="w-2 h-2 rounded-full bg-tertiary animate-pulse shadow-[0_0_12px_rgba(193,206,145,0.4)]"></div>
-          <span class="text-xs font-body text-on-surface-variant tracking-wide">Systems Operational</span>
-        </div>
+        <button id="gv-signout" class="text-xs text-outline hover:text-primary transition-colors font-bold uppercase tracking-wider">Sign out</button>
       </div>
     </div>
-
+    <div id="groups-list" class="flex flex-col gap-3 mb-4"></div>
+    <div id="gv-pending-section" style="display:none" class="mb-4 flex flex-col gap-2">
+      <p class="text-[10px] font-bold uppercase tracking-widest text-outline px-1">Pending Approval</p>
+      <div id="gv-pending-list" class="flex flex-col gap-2"></div>
+    </div>
+    <div id="gv-no-groups" style="display:none" class="text-center py-12">
+      <span class="material-symbols-outlined text-4xl text-outline mb-3 block">group_off</span>
+      <p class="font-headline font-bold text-on-surface mb-2">No groups yet</p>
+      <p class="text-sm text-on-surface-variant">You need an invite link from a group admin to join.</p>
+    </div>
+    <div id="gv-create-section" style="display:none" class="mt-2">
+      <button id="gv-create-btn" class="w-full flex items-center justify-center gap-2 py-3 border border-dashed border-primary/30 rounded-xl text-primary hover:bg-primary/5 transition-all text-sm font-bold uppercase tracking-wider">
+        <span class="material-symbols-outlined text-base">add</span>
+        Create New Group
+      </button>
+    </div>
   </div>
 </div>
 
@@ -245,8 +230,8 @@
   <!-- Sidebar -->
   <aside class="hidden md:flex h-screen w-64 fixed left-0 top-0 flex-col p-4 gap-8 bg-[#0E0E0F] z-50 border-r border-outline-variant/10 editorial-shadow">
     <div class="flex flex-col gap-1 px-2 pt-1">
-      <span class="text-primary font-black uppercase tracking-[0.1em] text-xs">Pendam</span>
-      <span class="text-[#353436] text-[10px] uppercase font-bold tracking-widest">when r u free lah</span>
+      <span class="text-primary font-black uppercase tracking-[0.1em] text-xs">Kumpul</span>
+      <span id="sb-group-name" class="text-[#353436] text-[10px] uppercase font-bold tracking-widest truncate">–</span>
     </div>
     <nav class="flex flex-col gap-1.5 flex-grow">
       <a class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer text-outline hover:text-primary hover:bg-surface-container/60" data-view="availability">
@@ -255,7 +240,7 @@
       </a>
       <a class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer text-outline hover:text-primary hover:bg-surface-container/60" data-view="heatmap">
         <span class="material-symbols-outlined text-xl">calendar_view_month</span>
-        <span class="text-sm tracking-wide">Gang Heatmap</span>
+        <span class="text-sm tracking-wide">Group Overlap</span>
       </a>
       <a class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer text-outline hover:text-primary hover:bg-surface-container/60" data-view="daily">
         <span class="material-symbols-outlined text-xl">schedule</span>
@@ -263,10 +248,14 @@
       </a>
       <a class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer text-outline hover:text-primary hover:bg-surface-container/60" data-view="sessions">
         <span class="material-symbols-outlined text-xl">celebration</span>
-        <span class="text-sm tracking-wide">Lepak Sessions</span>
+        <span class="text-sm tracking-wide">Hangouts</span>
       </a>
     </nav>
     <div class="mt-auto flex flex-col gap-3 pt-4 border-t border-outline-variant/10">
+      <button id="switch-group-btn" class="flex items-center gap-3 px-4 py-2 text-outline hover:text-primary transition-all text-sm rounded-lg hover:bg-surface-container/60">
+        <span class="material-symbols-outlined text-base">swap_horiz</span>
+        Switch Group
+      </button>
       <div class="flex items-center gap-3 px-2">
         <div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/30 flex-shrink-0 bg-surface-container flex items-center justify-center">
           <img id="sb-photo" class="w-full h-full object-cover" src="" alt="" onerror="this.style.display='none';document.getElementById('sb-initials').style.display='flex'"/>
@@ -277,9 +266,10 @@
           <span id="sb-email" class="text-[10px] text-outline truncate"></span>
         </div>
       </div>
-      <button id="admin-btn" style="display:none" class="flex items-center gap-3 px-4 py-2 text-outline hover:text-primary transition-all text-sm rounded-lg hover:bg-surface-container/60">
+      <button id="admin-btn" style="display:none" class="relative flex items-center gap-3 px-4 py-2 text-outline hover:text-primary transition-all text-sm rounded-lg hover:bg-surface-container/60">
         <span class="material-symbols-outlined text-base">manage_accounts</span>
-        Manage Gang
+        Manage Group
+        <span id="admin-req-badge" style="display:none" class="notif-badge" style="top:4px;right:4px">0</span>
       </button>
       <button id="signout-btn" class="flex items-center gap-3 px-4 py-2 text-outline hover:text-primary transition-all text-sm rounded-lg hover:bg-surface-container/60">
         <span class="material-symbols-outlined text-base">logout</span>
@@ -297,7 +287,7 @@
         <button id="mob-menu-btn" class="md:hidden text-outline hover:text-primary transition-colors p-1.5 rounded-lg hover:bg-surface-container -ml-1">
           <span class="material-symbols-outlined text-2xl">menu</span>
         </button>
-        <h1 class="font-headline text-lg md:text-2xl font-bold tracking-tighter text-primary">Pendam.سانتاي</h1>
+        <h1 class="font-headline text-lg md:text-2xl font-bold tracking-tighter text-primary">Kumpul<span id="hdr-group-name" class="text-outline/60 font-normal text-sm ml-2 hidden md:inline"></span></h1>
       </div>
       <div class="flex items-center gap-3 md:gap-4">
         <div class="relative">
@@ -395,7 +385,7 @@
           <span class="material-symbols-outlined text-xl">chevron_left</span>
         </button>
         <div class="text-center">
-          <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-outline">Gang Heatmap</p>
+          <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-outline">Group Overlap</p>
           <h2 class="font-headline text-xl font-extrabold tracking-tight leading-tight">
             <span id="ht-month"></span> <span class="text-primary/50 text-base font-bold" id="ht-year"></span>
           </h2>
@@ -412,7 +402,7 @@
             <span id="ht-month-d"></span> <span class="text-primary/40" id="ht-year-d"></span>
           </h2>
           <p class="text-on-surface-variant text-sm mt-2 max-w-md leading-relaxed">
-            Brighter = more people free. Dark = people are busy on those days.
+            Brighter = more people free. Darker = everyone's busy.
           </p>
         </div>
         <div class="flex items-center gap-3">
@@ -449,7 +439,7 @@
         </div>
         <div class="lg:col-span-4 flex flex-col gap-5">
           <div class="bg-surface-container-highest p-6 md:p-8 rounded-xl border border-outline-variant/10">
-            <span class="inline-block px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest rounded-md mb-4">Best Day to Lepak</span>
+            <span class="inline-block px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest rounded-md mb-4">Best Day to Hang Out</span>
             <h3 class="text-3xl md:text-4xl font-headline font-bold text-primary tracking-tighter" id="sp-date">–</h3>
             <p class="text-sm text-on-surface-variant mt-2" id="sp-desc">No data yet for this month.</p>
             <div class="flex -space-x-2 mt-5 min-h-[36px]" id="sp-avatars"></div>
@@ -464,13 +454,13 @@
             </div>
             <div class="space-y-3">
               <div class="flex justify-between items-center">
-                <span class="text-sm text-outline">Gang overlap</span>
+                <span class="text-sm text-outline">Group overlap</span>
                 <span class="text-sm font-bold text-on-surface" id="sp-pct">–</span>
               </div>
               <div class="w-full bg-surface-container h-1 rounded-full overflow-hidden">
                 <div class="bg-primary h-full transition-all duration-700" id="sp-bar" style="width:0%"></div>
               </div>
-              <p class="text-xs text-on-surface-variant leading-relaxed italic" id="sp-insight">Update free days korang dulu baru boleh tengok overlap.</p>
+              <p class="text-xs text-on-surface-variant leading-relaxed italic" id="sp-insight">Update your free days first before we can find an overlap.</p>
             </div>
           </div>
         </div>
@@ -584,12 +574,12 @@
         <div>
           <span class="hidden md:block font-label text-[10px] tracking-[0.2em] text-outline font-bold uppercase">Coming Up</span>
           <h2 class="font-headline text-xl md:text-5xl font-extrabold tracking-tight md:mt-1 text-on-surface">
-            Lepak<span class="text-primary"> Sessions</span>
+            Hang<span class="text-primary">outs</span>
           </h2>
         </div>
         <button id="open-lepak-modal" class="flex items-center gap-1.5 px-4 py-2.5 md:px-5 md:py-3 bg-primary text-on-primary font-bold text-sm rounded-xl hover:opacity-90 active:scale-95 transition-all flex-shrink-0">
           <span class="material-symbols-outlined text-base">add</span>
-          <span class="hidden sm:inline">Initiate </span>Lepak
+          Plan Hangout
         </button>
       </div>
       <div id="sessions-list" class="flex flex-col gap-3 md:gap-4"></div>
@@ -606,7 +596,7 @@
     </a>
     <a class="mob-nav flex flex-col items-center gap-0.5 px-4 py-1 cursor-pointer transition-all" data-view="heatmap">
       <span class="material-symbols-outlined text-[22px]">calendar_view_month</span>
-      <span class="text-[9px] uppercase tracking-wider font-bold">Gang</span>
+      <span class="text-[9px] uppercase tracking-wider font-bold">Overlap</span>
       <span class="mob-dot mt-0.5"></span>
     </a>
     <a class="mob-nav flex flex-col items-center gap-0.5 px-4 py-1 cursor-pointer transition-all" data-view="daily">
@@ -616,7 +606,7 @@
     </a>
     <a class="mob-nav flex flex-col items-center gap-0.5 px-4 py-1 cursor-pointer transition-all" data-view="sessions">
       <span class="material-symbols-outlined text-[22px]">celebration</span>
-      <span class="text-[9px] uppercase tracking-wider font-bold">Lepak</span>
+      <span class="text-[9px] uppercase tracking-wider font-bold">Hangouts</span>
       <span class="mob-dot mt-0.5"></span>
     </a>
   </nav>
@@ -642,7 +632,7 @@
 <!-- Mobile drawer -->
 <div id="mob-drawer">
   <div class="flex items-center justify-between px-5 py-5 border-b border-outline-variant/10">
-    <span class="text-primary font-black uppercase tracking-[0.1em] text-xs">Pendam</span>
+    <span class="text-primary font-black uppercase tracking-[0.1em] text-xs">Kumpul</span>
     <button id="mob-drawer-close" class="text-outline hover:text-primary p-1 rounded-lg hover:bg-surface-container transition-colors">
       <span class="material-symbols-outlined text-xl">close</span>
     </button>
@@ -654,7 +644,7 @@
     </a>
     <a class="mob-drawer-link flex items-center gap-3 px-4 py-3 rounded-lg text-outline transition-all cursor-pointer" data-view="heatmap">
       <span class="material-symbols-outlined text-xl">calendar_view_month</span>
-      <span class="text-sm font-bold tracking-wide">Gang Heatmap</span>
+      <span class="text-sm font-bold tracking-wide">Group Overlap</span>
     </a>
     <a class="mob-drawer-link flex items-center gap-3 px-4 py-3 rounded-lg text-outline transition-all cursor-pointer" data-view="daily">
       <span class="material-symbols-outlined text-xl">schedule</span>
@@ -662,8 +652,12 @@
     </a>
     <a class="mob-drawer-link flex items-center gap-3 px-4 py-3 rounded-lg text-outline transition-all cursor-pointer" data-view="sessions">
       <span class="material-symbols-outlined text-xl">celebration</span>
-      <span class="text-sm font-bold tracking-wide">Lepak Sessions</span>
+      <span class="text-sm font-bold tracking-wide">Hangouts</span>
     </a>
+    <button id="mob-switch-group-btn" class="mob-drawer-link w-full flex items-center gap-3 px-4 py-3 rounded-lg text-outline transition-all cursor-pointer">
+      <span class="material-symbols-outlined text-xl">swap_horiz</span>
+      <span class="text-sm font-bold tracking-wide">Switch Group</span>
+    </button>
   </nav>
   <div class="p-4 border-t border-outline-variant/10">
     <div class="flex items-center gap-3 px-2 mb-3">
@@ -678,7 +672,7 @@
     </div>
     <button id="drawer-admin-btn" style="display:none" class="w-full flex items-center gap-3 px-4 py-2.5 text-outline hover:text-primary transition-all text-sm rounded-lg hover:bg-surface-container/60">
       <span class="material-symbols-outlined text-base">manage_accounts</span>
-      Manage Gang
+      Manage Group
     </button>
     <button id="drawer-signout-btn" class="w-full flex items-center gap-3 px-4 py-2.5 text-outline hover:text-primary transition-all text-sm rounded-lg hover:bg-surface-container/60">
       <span class="material-symbols-outlined text-base">logout</span>
@@ -689,13 +683,13 @@
 
 </div><!-- /app-view -->
 
-<!-- ── Lepak Creation Modal ────────────────────────────────────────────────── -->
+<!-- ── Hangout Creation Modal ──────────────────────────────────────────────── -->
 <div id="lepak-modal">
   <div class="modal-box">
     <div class="p-5 border-b border-outline-variant/10 flex items-center justify-between">
       <div>
-        <h2 class="font-headline font-bold text-xl text-on-surface">Initiate Lepak</h2>
-        <p class="text-sm text-on-surface-variant mt-0.5">Lincah choose hari yang ramai free</p>
+        <h2 class="font-headline font-bold text-xl text-on-surface">Plan a Hangout</h2>
+        <p class="text-sm text-on-surface-variant mt-0.5">Pick the day with the most people free</p>
       </div>
       <button id="lepak-modal-close" class="text-outline hover:text-primary p-1.5 rounded-full hover:bg-surface-container transition-colors">
         <span class="material-symbols-outlined">close</span>
@@ -703,7 +697,7 @@
     </div>
     <div class="p-5 flex flex-col gap-5">
       <div>
-        <span class="text-xs font-bold uppercase tracking-widest text-outline mb-3 block">Best Days (by overlap)</span>
+        <span class="text-xs font-bold uppercase tracking-widest text-outline mb-3 block">Top Days (by overlap)</span>
         <div id="lepak-days" class="flex flex-col gap-2"></div>
       </div>
       <div id="lepak-time-suggestion" style="display:none" class="bg-primary/5 rounded-lg p-3 border border-primary/15 flex items-center gap-3">
@@ -715,7 +709,7 @@
       </div>
       <div>
         <label class="text-xs font-bold uppercase tracking-widest text-outline block mb-2">Session Name</label>
-        <input id="lepak-name" type="text" maxlength="60" placeholder='e.g. "Giling Friday"'
+        <input id="lepak-name" type="text" maxlength="60" placeholder='e.g. "Chill Friday"'
           class="w-full bg-surface-container-low border border-outline-variant/30 focus:border-primary/60 outline-none rounded-lg px-4 py-3 text-sm text-on-surface placeholder:text-outline transition-colors font-body"/>
       </div>
       <button id="lepak-confirm" class="w-full py-3 bg-primary text-on-primary font-bold text-sm rounded-lg hover:opacity-90 active:scale-95 transition-all">
@@ -730,14 +724,44 @@
   <div class="modal-box">
     <div class="p-5 border-b border-outline-variant/10 flex items-center justify-between">
       <div>
-        <h2 class="font-headline font-bold text-xl text-on-surface">Manage Gang</h2>
-        <p class="text-sm text-on-surface-variant mt-0.5">Remove members from Pendam</p>
+        <h2 class="font-headline font-bold text-xl text-on-surface">Manage Group</h2>
+        <p class="text-sm text-on-surface-variant mt-0.5" id="admin-modal-subtitle">–</p>
       </div>
       <button id="admin-modal-close" class="text-outline hover:text-primary p-1.5 rounded-full hover:bg-surface-container transition-colors">
         <span class="material-symbols-outlined">close</span>
       </button>
     </div>
-    <div id="admin-member-list" class="p-5 flex flex-col gap-3 max-h-[60vh] overflow-y-auto"></div>
+    <div class="flex border-b border-outline-variant/10">
+      <button class="admin-tab-btn flex-1 py-3 text-xs font-bold uppercase tracking-wider transition-colors" data-tab="members">Members</button>
+      <button class="admin-tab-btn flex-1 py-3 text-xs font-bold uppercase tracking-wider transition-colors relative" data-tab="requests">
+        Requests
+        <span id="req-tab-badge" style="display:none" class="notif-badge" style="top:6px;right:calc(50% - 28px)">0</span>
+      </button>
+      <button class="admin-tab-btn flex-1 py-3 text-xs font-bold uppercase tracking-wider transition-colors" data-tab="groups">Groups</button>
+    </div>
+    <div id="admin-tab-members" class="p-5 flex flex-col gap-3 max-h-[55vh] overflow-y-auto"></div>
+    <div id="admin-tab-requests" style="display:none" class="p-5 flex flex-col gap-3 max-h-[55vh] overflow-y-auto"></div>
+    <div id="admin-tab-groups" style="display:none" class="p-5 flex flex-col gap-3 max-h-[55vh] overflow-y-auto"></div>
+  </div>
+</div>
+
+<!-- ── Create Group Modal ───────────────────────────────────────────────────── -->
+<div id="create-group-modal" style="position:fixed;inset:0;z-index:700;display:none;align-items:center;justify-content:center;padding:1rem;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px)">
+  <div class="modal-box">
+    <div class="p-5 border-b border-outline-variant/10 flex items-center justify-between">
+      <h2 class="font-headline font-bold text-xl text-on-surface">Create a Group</h2>
+      <button id="create-group-close" class="text-outline hover:text-primary p-1.5 rounded-full hover:bg-surface-container transition-colors">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="p-5 flex flex-col gap-4">
+      <div>
+        <label class="text-xs font-bold uppercase tracking-widest text-outline block mb-2">Group Name</label>
+        <input id="new-group-name" type="text" maxlength="50" placeholder='e.g. "School Friends"'
+          class="w-full bg-surface-container-low border border-outline-variant/30 focus:border-primary/60 outline-none rounded-lg px-4 py-3 text-sm text-on-surface placeholder:text-outline transition-colors font-body"/>
+      </div>
+      <button id="create-group-confirm" class="w-full py-3 bg-primary text-on-primary font-bold text-sm rounded-lg hover:opacity-90 active:scale-95 transition-all">Create Group</button>
+    </div>
   </div>
 </div>
 
@@ -761,43 +785,12 @@ const firebaseConfig = {
     from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
   import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
     from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-  import { getDatabase, ref, set, remove, get, onValue, push }
+  import { getDatabase, ref, set, remove, get, onValue, push, off }
     from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
 
   if (firebaseConfig.apiKey === 'YOUR_API_KEY') {
     document.getElementById('cfg-banner').style.display = 'block';
   }
-
-  // ── Login quotes — add your own below, one per line ───────────────────────
-  const LOGIN_QUOTES = [
-    '"Syallah Stat.." - 2012',
-    '"Ah" - Mad, 1994 - ?',
-    '"Roastaaa" - Fir, 2011',
-    '"Charcothhhhh" - Sufi, 2011',
-  ];
-  const pickedQuote = LOGIN_QUOTES[Math.floor(Math.random() * LOGIN_QUOTES.length)];
-  ['login-quote', 'login-quote-d'].forEach(id => {
-    const el = document.getElementById(id); if (el) el.textContent = pickedQuote;
-  });
-
-  // ── Login images — add your own URLs below, two will be picked at random ──
-  const LOGIN_IMAGES = [
-    'https://raw.githubusercontent.com/shafeeqat/pendam-santai/main/webFiles/img/1d6c0cfa-14a3-42a2-858b-8dabae0d2ae0.jpg',
-    'https://raw.githubusercontent.com/shafeeqat/pendam-santai/main/webFiles/img/IMG-20241121-WA0001.jpg',
-    'https://raw.githubusercontent.com/shafeeqat/pendam-santai/main/webFiles/img/IMG-20250221-WA0036.jpg',
-    'https://raw.githubusercontent.com/shafeeqat/pendam-santai/main/webFiles/img/IMG-20250508-WA0012.jpg',
-    'https://raw.githubusercontent.com/shafeeqat/pendam-santai/main/webFiles/img/IMG-20251114-WA0007.jpg',
-    'https://raw.githubusercontent.com/shafeeqat/pendam-santai/main/webFiles/img/IMG-20251117-WA0012.jpg',
-    'https://raw.githubusercontent.com/shafeeqat/pendam-santai/main/webFiles/img/IMG-20251224-WA0004.jpg',
-    'https://raw.githubusercontent.com/shafeeqat/pendam-santai/main/webFiles/img/IMG-20260314-WA0063.jpg',
-    'https://raw.githubusercontent.com/shafeeqat/pendam-santai/main/webFiles/img/eda2947d-59c8-4abe-92ad-0ca02a4e1868.jpg',
-  ];
-  (() => {
-    const shuffled = [...LOGIN_IMAGES].sort(() => Math.random() - 0.5);
-    const l = shuffled[0] || '', r = shuffled[1] || shuffled[0] || '';
-    ['login-img-left', 'login-img-left-d'].forEach(id => { const e = document.getElementById(id); if (e) e.src = l; });
-    ['login-img-right', 'login-img-right-d'].forEach(id => { const e = document.getElementById(id); if (e) e.src = r; });
-  })();
 
   const app  = initializeApp(firebaseConfig);
   const auth = getAuth(app);
@@ -805,96 +798,314 @@ const firebaseConfig = {
   const gp   = new GoogleAuthProvider();
 
   // ── State ──────────────────────────────────────────────────────────────────
-  let me             = null;
-  let allUsers       = {};
-  let availability   = {};
-  let activeView     = 'availability';
-  let selectedDate   = todayStr();
+  let me                = null;
+  let activeGroupId     = null;
+  let activeGroupName   = '';
+  let activeGroupAdmins = {};
+  let allUsers          = {};
+  let availability      = {};
+  let pendingRequests   = {};
+  let activeView        = 'availability';
+  let selectedDate      = todayStr();
   let avYear = new Date().getFullYear(), avMonth = new Date().getMonth();
   let htYear = new Date().getFullYear(), htMonth = new Date().getMonth();
-
-  // New state
-  let pendingSelections = {};    // dateStr → { am, pm }
+  let pendingSelections = {};
   let pendingRemovals   = new Set();
   let myNotifications   = [];
   let lepakPlans        = {};
   let notifPanelOpen    = false;
-  let dataSubscribed    = false;
+  let dataRefs          = [];   // active listeners to clean up
   let selectedLepakDate = null;
   let activeLepakName   = null;
+
+  // ── Invite link parsing ────────────────────────────────────────────────────
+  let pendingJoinGroupId = null, pendingJoinCode = null;
+  (() => {
+    const p = new URLSearchParams(location.search).get('join');
+    if (p) {
+      const [gid, code] = p.split(':');
+      if (gid && code) { pendingJoinGroupId = gid; pendingJoinCode = code; }
+      const el = document.getElementById('join-notice');
+      if (el) el.style.display = pendingJoinGroupId ? 'flex' : 'none';
+    }
+  })();
+
+  // ── Admin helpers ──────────────────────────────────────────────────────────
+  const ADMIN_EMAILS = ['shaf.r210003@gmail.com'];
+  function isSuperAdmin() { return me && ADMIN_EMAILS.includes(me.email); }
+  function isGroupAdmin() { return isSuperAdmin() || (me && !!activeGroupAdmins[me.uid]); }
+
+  function showAdminButtons() {
+    const show = isGroupAdmin();
+    ['admin-btn', 'drawer-admin-btn'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = show ? 'flex' : 'none';
+    });
+  }
+
+  function updateRequestsBadge() {
+    const count = Object.keys(pendingRequests).length;
+    ['admin-req-badge', 'req-tab-badge'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.textContent = count; el.style.display = count > 0 ? 'inline-flex' : 'none'; }
+    });
+  }
 
   // ── Auth ───────────────────────────────────────────────────────────────────
   document.getElementById('signin-btn').addEventListener('click', () =>
     signInWithPopup(auth, gp).catch(e => alert('Sign-in error: ' + e.message))
   );
+  document.getElementById('gv-signout').addEventListener('click', () => signOut(auth));
   document.getElementById('signout-btn').addEventListener('click', () => signOut(auth));
 
   onAuthStateChanged(auth, async user => {
     me = user;
     if (user) {
       await set(ref(db, `users/${user.uid}`), {
-        name:     user.displayName || user.email,
-        email:    user.email,
-        photoURL: user.photoURL || ''
+        name: user.displayName || user.email, email: user.email, photoURL: user.photoURL || ''
       });
-      bootApp();
-      subscribeData();
+      if (pendingJoinGroupId) await processInviteLink(pendingJoinGroupId, pendingJoinCode);
+      showGroupsView();
     } else {
-      dataSubscribed = false;
-      document.getElementById('login-view').style.display = '';
-      document.getElementById('app-view').style.display   = 'none';
+      cleanupListeners();
+      activeGroupId = null;
+      ['login-view','groups-view','app-view'].forEach((id,i) =>
+        document.getElementById(id).style.display = i === 0 ? '' : 'none'
+      );
     }
   });
 
-  function bootApp() {
-    document.getElementById('login-view').style.display = 'none';
-    document.getElementById('app-view').style.display   = 'block';
-    const name  = me.displayName || me.email;
-    const inits = getInitials(name);
-    document.getElementById('sb-name').textContent      = name;
-    document.getElementById('sb-email').textContent     = me.email;
-    document.getElementById('sb-initials').textContent  = inits;
-    document.getElementById('hdr-initials').textContent = inits;
-    document.getElementById('drawer-name').textContent  = name;
-    document.getElementById('drawer-email').textContent = me.email;
+  // ── Invite link processing ─────────────────────────────────────────────────
+  async function processInviteLink(groupId, code) {
+    try {
+      const codeSnap = await get(ref(db, `groups/${groupId}/inviteCode`));
+      if (!codeSnap.exists() || codeSnap.val() !== code) { alert('Invalid or expired invite link.'); return; }
+      const memberSnap = await get(ref(db, `groups/${groupId}/members/${me.uid}`));
+      if (memberSnap.exists()) return;
+      const pendSnap = await get(ref(db, `groups/${groupId}/pending/${me.uid}`));
+      if (pendSnap.exists()) return;
+      await set(ref(db, `groups/${groupId}/pending/${me.uid}`), {
+        name: me.displayName || me.email, email: me.email,
+        photoURL: me.photoURL || '', requestedAt: Date.now()
+      });
+      await set(ref(db, `userPending/${me.uid}/${groupId}`), true);
+      const admSnap = await get(ref(db, `groups/${groupId}/admins`));
+      const gNameSnap = await get(ref(db, `groups/${groupId}/name`));
+      const gName = gNameSnap.val() || 'the group';
+      const adminUids = admSnap.val() ? Object.keys(admSnap.val()) : [];
+      for (const uid of adminUids)
+        await sendNotif(uid, `${me.displayName || me.email} requested to join "${gName}"`, 'join_request');
+      const url = new URL(location.href);
+      url.searchParams.delete('join');
+      history.replaceState({}, '', url.toString());
+      pendingJoinGroupId = null; pendingJoinCode = null;
+    } catch(e) { console.error('Join error:', e); }
+  }
+
+  // ── Groups view ────────────────────────────────────────────────────────────
+  async function showGroupsView() {
+    cleanupListeners();
+    activeGroupId = null;
+    document.getElementById('login-view').style.display  = 'none';
+    document.getElementById('app-view').style.display    = 'none';
+    document.getElementById('groups-view').style.display = '';
+
+    const name = me.displayName || me.email;
+    const gvPhoto = document.getElementById('gv-photo');
+    const gvInits = document.getElementById('gv-initials');
+    gvInits.textContent = getInitials(name);
+    if (me.photoURL) gvPhoto.src = me.photoURL;
+
+    await renderGroupsList();
+  }
+
+  async function renderGroupsList() {
+    const el = document.getElementById('groups-list');
+    const pendEl = document.getElementById('gv-pending-section');
+    const pendList = document.getElementById('gv-pending-list');
+    const noGroups = document.getElementById('gv-no-groups');
+    const createSec = document.getElementById('gv-create-section');
+    el.innerHTML = '<p class="text-sm text-outline py-4 text-center">Loading…</p>';
+
+    const [ugSnap, upSnap] = await Promise.all([
+      get(ref(db, `userGroups/${me.uid}`)),
+      get(ref(db, `userPending/${me.uid}`))
+    ]);
+    const groupIds   = ugSnap.val()  ? Object.keys(ugSnap.val())  : [];
+    const pendingIds = upSnap.val()  ? Object.keys(upSnap.val())  : [];
+
+    el.innerHTML = '';
+
+    if (groupIds.length === 0 && pendingIds.length === 0) {
+      noGroups.style.display = 'block';
+    } else {
+      noGroups.style.display = 'none';
+    }
+
+    for (const gid of groupIds) {
+      const gSnap = await get(ref(db, `groups/${gid}`));
+      if (!gSnap.exists()) continue;
+      const g = gSnap.val();
+      const memberCount  = g.members ? Object.keys(g.members).length : 0;
+      const pendingCount = g.pending ? Object.keys(g.pending).length : 0;
+      const card = document.createElement('button');
+      card.className = 'w-full flex items-center justify-between p-4 bg-surface-container-low rounded-xl border border-outline-variant/10 hover:border-primary/30 transition-all text-left group';
+      card.innerHTML = `
+        <div class="flex items-center gap-4 min-w-0">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-primary text-xl">group</span>
+          </div>
+          <div class="min-w-0">
+            <p class="font-headline font-bold text-on-surface text-base truncate">${escHtml(g.name)}</p>
+            <p class="text-xs text-outline mt-0.5">${memberCount} member${memberCount !== 1 ? 's' : ''}${pendingCount > 0 && isGroupAdminForGroup(gid, g.admins) ? ` · <span class="text-primary">${pendingCount} pending</span>` : ''}</p>
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">chevron_right</span>
+      `;
+      card.addEventListener('click', () => enterGroup(gid, g.name));
+      el.appendChild(card);
+    }
+
+    if (pendingIds.length > 0) {
+      pendEl.style.display = 'block';
+      pendList.innerHTML = '';
+      for (const gid of pendingIds) {
+        const gSnap = await get(ref(db, `groups/${gid}/name`));
+        const gName = gSnap.val() || gid;
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between p-3 bg-surface-container-low rounded-xl border border-outline-variant/10';
+        row.innerHTML = `
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="material-symbols-outlined text-outline text-xl">hourglass_empty</span>
+            <p class="text-sm text-on-surface-variant truncate">${escHtml(gName)}</p>
+          </div>
+          <span class="text-[10px] text-outline uppercase tracking-widest">Awaiting approval</span>
+        `;
+        pendList.appendChild(row);
+      }
+    } else {
+      pendEl.style.display = 'none';
+    }
+
+    createSec.style.display = isSuperAdmin() ? 'block' : 'none';
+  }
+
+  function isGroupAdminForGroup(gid, admins) {
+    return isSuperAdmin() || (admins && admins[me?.uid]);
+  }
+
+  // ── Enter a group ──────────────────────────────────────────────────────────
+  function enterGroup(groupId, groupName) {
+    activeGroupId = groupId; activeGroupName = groupName;
+    allUsers = {}; availability = {}; lepakPlans = {};
+    pendingRequests = {}; pendingSelections = {}; pendingRemovals = new Set();
+    activeGroupAdmins = {};
+    const now = new Date();
+    avYear = htYear = now.getFullYear(); avMonth = htMonth = now.getMonth();
+
+    document.getElementById('groups-view').style.display = 'none';
+    document.getElementById('app-view').style.display    = 'block';
+
+    const sbGn = document.getElementById('sb-group-name');
+    if (sbGn) sbGn.textContent = groupName;
+    const hdrGn = document.getElementById('hdr-group-name');
+    if (hdrGn) hdrGn.textContent = groupName;
+
+    const name = me.displayName || me.email, inits = getInitials(name);
+    document.getElementById('sb-name').textContent         = name;
+    document.getElementById('sb-email').textContent        = me.email;
+    document.getElementById('sb-initials').textContent     = inits;
+    document.getElementById('hdr-initials').textContent    = inits;
+    document.getElementById('drawer-name').textContent     = name;
+    document.getElementById('drawer-email').textContent    = me.email;
     document.getElementById('drawer-initials').textContent = inits;
     if (me.photoURL) {
       document.getElementById('sb-photo').src     = me.photoURL;
       document.getElementById('hdr-photo').src    = me.photoURL;
       document.getElementById('drawer-photo').src = me.photoURL;
     }
-    showAdminButtons();
+
+    subscribeGroupData();
     goView('availability');
   }
 
-  // ── Data subscription (flag prevents duplicate listeners) ──────────────────
-  function subscribeData() {
-    if (dataSubscribed) return;
-    dataSubscribed = true;
+  function cleanupListeners() {
+    dataRefs.forEach(r => off(r));
+    dataRefs = [];
+  }
 
-    onValue(ref(db, 'users'), snap => {
-      allUsers = snap.val() || {};
-      redraw();
-      renderUpcomingLepak();
-    });
-    onValue(ref(db, 'availability'), snap => {
-      availability = snap.val() || {};
-      redraw();
-    });
-    onValue(ref(db, `notifications/${me.uid}`), snap => {
+  // ── Data subscription (group-scoped) ───────────────────────────────────────
+  function subscribeGroupData() {
+    const gid = activeGroupId;
+
+    const rAdmins = ref(db, `groups/${gid}/admins`);
+    onValue(rAdmins, snap => { activeGroupAdmins = snap.val() || {}; showAdminButtons(); });
+    dataRefs.push(rAdmins);
+
+    const rMembers = ref(db, `groups/${gid}/members`);
+    onValue(rMembers, snap => { allUsers = snap.val() || {}; redraw(); renderUpcomingLepak(); });
+    dataRefs.push(rMembers);
+
+    const rAvail = ref(db, `groups/${gid}/availability`);
+    onValue(rAvail, snap => { availability = snap.val() || {}; redraw(); });
+    dataRefs.push(rAvail);
+
+    const rNotif = ref(db, `notifications/${me.uid}`);
+    onValue(rNotif, snap => {
       const data = snap.val() || {};
-      myNotifications = Object.entries(data)
-        .map(([id, n]) => ({ id, ...n }))
-        .sort((a, b) => b.ts - a.ts);
+      myNotifications = Object.entries(data).map(([id, n]) => ({ id, ...n })).sort((a, b) => b.ts - a.ts);
       renderNotifBadge();
       if (notifPanelOpen) renderNotifPanel();
     });
-    onValue(ref(db, 'lepak'), snap => {
+    dataRefs.push(rNotif);
+
+    const rLepak = ref(db, `groups/${gid}/lepak`);
+    onValue(rLepak, snap => {
       lepakPlans = snap.val() || {};
       renderUpcomingLepak();
       if (activeView === 'sessions') renderSessionsView();
     });
+    dataRefs.push(rLepak);
+
+    const rPending = ref(db, `groups/${gid}/pending`);
+    onValue(rPending, snap => { pendingRequests = snap.val() || {}; updateRequestsBadge(); });
+    dataRefs.push(rPending);
   }
+
+  // ── Switch group buttons ───────────────────────────────────────────────────
+  document.getElementById('switch-group-btn').addEventListener('click', showGroupsView);
+  document.getElementById('mob-switch-group-btn').addEventListener('click', () => { closeDrawer(); showGroupsView(); });
+
+  // ── Group creation ─────────────────────────────────────────────────────────
+  document.getElementById('gv-create-btn').addEventListener('click', () => {
+    document.getElementById('new-group-name').value = '';
+    document.getElementById('create-group-modal').style.display = 'flex';
+  });
+  document.getElementById('create-group-close').addEventListener('click', () => {
+    document.getElementById('create-group-modal').style.display = 'none';
+  });
+  document.getElementById('create-group-modal').addEventListener('click', e => {
+    if (e.target === document.getElementById('create-group-modal'))
+      document.getElementById('create-group-modal').style.display = 'none';
+  });
+  document.getElementById('create-group-confirm').addEventListener('click', async () => {
+    const name = document.getElementById('new-group-name').value.trim();
+    if (!name) { document.getElementById('new-group-name').focus(); return; }
+    const btn = document.getElementById('create-group-confirm');
+    btn.disabled = true; btn.textContent = 'Creating…';
+    try {
+      const code = Math.random().toString(36).slice(2,10) + Math.random().toString(36).slice(2,10);
+      const gRef = push(ref(db, 'groups'));
+      await set(gRef, {
+        name, inviteCode: code, createdBy: me.uid, createdAt: Date.now(),
+        admins: { [me.uid]: true },
+        members: { [me.uid]: { name: me.displayName || me.email, email: me.email, photoURL: me.photoURL || '', joinedAt: Date.now() } }
+      });
+      await set(ref(db, `userGroups/${me.uid}/${gRef.key}`), true);
+      document.getElementById('create-group-modal').style.display = 'none';
+      enterGroup(gRef.key, name);
+    } finally { btn.disabled = false; btn.textContent = 'Create Group'; }
+  });
 
   // ── Navigation ─────────────────────────────────────────────────────────────
   document.querySelectorAll('.nav-link, .mob-nav').forEach(el =>
@@ -1011,74 +1222,188 @@ const firebaseConfig = {
     });
   }
 
-  // ── ADMIN ──────────────────────────────────────────────────────────────────
-  const ADMIN_EMAILS = ['shaf.r210003@gmail.com'];
-  function isAdmin() { return me && ADMIN_EMAILS.includes(me.email); }
-
-  function showAdminButtons() {
-    ['admin-btn', 'drawer-admin-btn'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.style.display = isAdmin() ? 'flex' : 'none';
-    });
-  }
-
+  // ── ADMIN MODAL ────────────────────────────────────────────────────────────
   function openAdminModal() {
-    renderAdminMemberList();
+    const sub = document.getElementById('admin-modal-subtitle');
+    if (sub) sub.textContent = activeGroupName;
+    renderAdminTab('members');
     document.getElementById('admin-modal').classList.add('open');
   }
-  function closeAdminModal() {
-    document.getElementById('admin-modal').classList.remove('open');
-  }
+  function closeAdminModal() { document.getElementById('admin-modal').classList.remove('open'); }
+
   document.getElementById('admin-modal-close').addEventListener('click', closeAdminModal);
   document.getElementById('admin-modal').addEventListener('click', e => {
     if (e.target === document.getElementById('admin-modal')) closeAdminModal();
   });
   document.getElementById('admin-btn').addEventListener('click', openAdminModal);
   document.getElementById('drawer-admin-btn').addEventListener('click', () => { closeDrawer(); openAdminModal(); });
+  document.querySelectorAll('.admin-tab-btn').forEach(btn =>
+    btn.addEventListener('click', () => renderAdminTab(btn.dataset.tab))
+  );
 
-  function renderAdminMemberList() {
-    const el = document.getElementById('admin-member-list');
-    el.innerHTML = '';
-    const users = Object.entries(allUsers);
-    if (!users.length) {
-      el.innerHTML = '<p class="text-sm text-outline italic">Takde members lagi.</p>';
-      return;
-    }
-    users.forEach(([uid, u]) => {
-      const isSelf = uid === me?.uid;
-      const row = document.createElement('div');
-      row.className = 'flex items-center justify-between gap-3 p-3 bg-surface-container-low rounded-xl';
-      const photoEl = u.photoURL
-        ? `<img src="${escHtml(u.photoURL)}" style="width:100%;height:100%;object-fit:cover" alt=""/>`
-        : `<span style="font-size:11px;font-weight:700;color:#f2be8c">${getInitials(u.name)}</span>`;
-      row.innerHTML = `
+  function renderAdminTab(tab) {
+    document.querySelectorAll('.admin-tab-btn').forEach(b => {
+      const on = b.dataset.tab === tab;
+      b.style.color        = on ? '#f2be8c' : '#9c8e82';
+      b.style.borderBottom = on ? '2px solid #f2be8c' : '2px solid transparent';
+    });
+    ['members','requests','groups'].forEach(t =>
+      document.getElementById('admin-tab-' + t).style.display = t === tab ? 'flex' : 'none'
+    );
+    if (tab === 'members')  renderAdminMembersTab();
+    if (tab === 'requests') renderAdminRequestsTab();
+    if (tab === 'groups')   renderAdminGroupsTab();
+  }
+
+  function memberRow(uid, u) {
+    const isSelf = uid === me?.uid;
+    const isAdm  = !!activeGroupAdmins[uid];
+    const photo  = u.photoURL
+      ? `<img src="${escHtml(u.photoURL)}" style="width:100%;height:100%;object-fit:cover" alt=""/>`
+      : `<span style="font-size:11px;font-weight:700;color:#f2be8c">${getInitials(u.name)}</span>`;
+    return `
+      <div class="flex items-center justify-between gap-3 p-3 bg-surface-container-low rounded-xl">
         <div class="flex items-center gap-3 min-w-0">
-          <div style="width:36px;height:36px;border-radius:50%;overflow:hidden;background:#353436;display:flex;align-items:center;justify-content:center;flex-shrink:0">${photoEl}</div>
+          <div style="width:36px;height:36px;border-radius:50%;overflow:hidden;background:#353436;display:flex;align-items:center;justify-content:center;flex-shrink:0">${photo}</div>
           <div class="min-w-0">
-            <p class="text-sm font-bold text-on-surface truncate">${escHtml(u.name)}${isSelf ? ' <span style="color:rgba(242,190,140,0.5);font-size:10px">(you)</span>' : ''}</p>
+            <p class="text-sm font-bold text-on-surface truncate">${escHtml(u.name)}${isSelf ? ' <span style="color:rgba(242,190,140,0.5);font-size:10px">(you)</span>' : ''}${isAdm ? ' <span style="color:#f2be8c;font-size:9px;text-transform:uppercase;letter-spacing:.05em">Admin</span>' : ''}</p>
             <p class="text-xs text-outline truncate">${escHtml(u.email)}</p>
           </div>
         </div>
-        ${!isSelf ? `<button class="remove-member-btn flex-shrink-0 px-3 py-1.5 text-xs font-bold text-error border border-error/30 hover:bg-error/10 rounded-lg transition-all uppercase tracking-wider" data-uid="${uid}" data-name="${escHtml(u.name)}">Remove</button>` : '<span class="text-[10px] text-outline uppercase tracking-wider flex-shrink-0">Admin</span>'}
-      `;
-      el.appendChild(row);
-    });
-    el.querySelectorAll('.remove-member-btn').forEach(btn =>
+        <div class="flex items-center gap-2 flex-shrink-0">
+          ${!isSelf && !isAdm ? `<button class="promote-btn text-[10px] font-bold text-outline hover:text-primary border border-outline-variant/30 px-2 py-1 rounded-lg transition-all uppercase" data-uid="${uid}" data-name="${escHtml(u.name)}">Admin</button>` : ''}
+          ${!isSelf ? `<button class="remove-member-btn text-[10px] font-bold text-error border border-error/30 hover:bg-error/10 px-2 py-1 rounded-lg transition-all uppercase" data-uid="${uid}" data-name="${escHtml(u.name)}">Remove</button>` : ''}
+        </div>
+      </div>`;
+  }
+
+  function renderAdminMembersTab() {
+    const el = document.getElementById('admin-tab-members');
+    el.innerHTML = '';
+    const users = Object.entries(allUsers);
+    if (!users.length) { el.innerHTML = '<p class="text-sm text-outline italic">No members yet.</p>'; return; }
+    users.forEach(([uid, u]) => { const div = document.createElement('div'); div.innerHTML = memberRow(uid, u); el.appendChild(div.firstElementChild); });
+    el.querySelectorAll('.promote-btn').forEach(btn =>
       btn.addEventListener('click', async () => {
-        const uid = btn.dataset.uid, name = btn.dataset.name;
-        if (!confirm(`Remove ${name} from Pendam? This will delete all their data.`)) return;
-        btn.disabled = true; btn.textContent = 'Removing…';
-        try {
-          await remove(ref(db, `users/${uid}`));
-          const avDates = Object.keys(availability);
-          await Promise.all(avDates.map(d => remove(ref(db, `availability/${d}/${uid}`))));
-          renderAdminMemberList();
-        } catch (e) {
-          btn.disabled = false; btn.textContent = 'Remove';
-          alert('Failed: ' + e.message);
-        }
+        if (!confirm(`Make ${btn.dataset.name} an admin of this group?`)) return;
+        btn.disabled = true;
+        try { await set(ref(db, `groups/${activeGroupId}/admins/${btn.dataset.uid}`), true); renderAdminMembersTab(); }
+        catch(e) { alert('Failed: ' + e.message); btn.disabled = false; }
       })
     );
+    el.querySelectorAll('.remove-member-btn').forEach(btn =>
+      btn.addEventListener('click', async () => {
+        const {uid, name} = btn.dataset;
+        if (!confirm(`Remove ${name} from this group?`)) return;
+        btn.disabled = true; btn.textContent = 'Removing…';
+        try {
+          await Promise.all([
+            remove(ref(db, `groups/${activeGroupId}/members/${uid}`)),
+            remove(ref(db, `groups/${activeGroupId}/admins/${uid}`)),
+            remove(ref(db, `userGroups/${uid}/${activeGroupId}`)),
+            ...Object.keys(availability).map(d => remove(ref(db, `groups/${activeGroupId}/availability/${d}/${uid}`)))
+          ]);
+          renderAdminMembersTab();
+        } catch(e) { btn.disabled = false; btn.textContent = 'Remove'; alert('Failed: ' + e.message); }
+      })
+    );
+  }
+
+  function renderAdminRequestsTab() {
+    const el = document.getElementById('admin-tab-requests');
+    el.innerHTML = '';
+    const reqs = Object.entries(pendingRequests);
+    if (!reqs.length) {
+      el.innerHTML = `<div class="text-center py-8"><span class="material-symbols-outlined text-3xl text-outline block mb-2">how_to_reg</span><p class="text-sm text-outline">No pending requests</p></div>`;
+      return;
+    }
+    reqs.forEach(([uid, u]) => {
+      const photo = u.photoURL
+        ? `<img src="${escHtml(u.photoURL)}" style="width:100%;height:100%;object-fit:cover" alt=""/>`
+        : `<span style="font-size:11px;font-weight:700;color:#f2be8c">${getInitials(u.name)}</span>`;
+      const row = document.createElement('div');
+      row.className = 'flex items-center justify-between gap-3 p-3 bg-surface-container-low rounded-xl';
+      row.innerHTML = `
+        <div class="flex items-center gap-3 min-w-0">
+          <div style="width:36px;height:36px;border-radius:50%;overflow:hidden;background:#353436;display:flex;align-items:center;justify-content:center;flex-shrink:0">${photo}</div>
+          <div class="min-w-0">
+            <p class="text-sm font-bold text-on-surface truncate">${escHtml(u.name)}</p>
+            <p class="text-xs text-outline truncate">${escHtml(u.email)}</p>
+          </div>
+        </div>
+        <div class="flex gap-2 flex-shrink-0">
+          <button class="approve-btn text-[10px] font-bold text-tertiary border border-tertiary/30 hover:bg-tertiary/10 px-2 py-1.5 rounded-lg uppercase" data-uid="${uid}" data-name="${escHtml(u.name)}" data-email="${escHtml(u.email)}" data-photo="${escHtml(u.photoURL||'')}">Approve</button>
+          <button class="deny-btn text-[10px] font-bold text-error border border-error/30 hover:bg-error/10 px-2 py-1.5 rounded-lg uppercase" data-uid="${uid}">Deny</button>
+        </div>`;
+      el.appendChild(row);
+    });
+    el.querySelectorAll('.approve-btn').forEach(btn =>
+      btn.addEventListener('click', async () => {
+        btn.disabled = true; btn.textContent = '…';
+        try {
+          const {uid, name, email, photo} = btn.dataset;
+          await set(ref(db, `groups/${activeGroupId}/members/${uid}`), { name, email, photoURL: photo, joinedAt: Date.now() });
+          await set(ref(db, `userGroups/${uid}/${activeGroupId}`), true);
+          await remove(ref(db, `groups/${activeGroupId}/pending/${uid}`));
+          await remove(ref(db, `userPending/${uid}/${activeGroupId}`));
+          await sendNotif(uid, `You've been approved to join "${activeGroupName}"`, 'join_approved');
+          renderAdminRequestsTab();
+        } catch(e) { alert('Failed: ' + e.message); btn.disabled = false; btn.textContent = 'Approve'; }
+      })
+    );
+    el.querySelectorAll('.deny-btn').forEach(btn =>
+      btn.addEventListener('click', async () => {
+        btn.disabled = true;
+        try {
+          await remove(ref(db, `groups/${activeGroupId}/pending/${btn.dataset.uid}`));
+          await remove(ref(db, `userPending/${btn.dataset.uid}/${activeGroupId}`));
+          renderAdminRequestsTab();
+        } catch(e) { alert('Failed: ' + e.message); btn.disabled = false; }
+      })
+    );
+  }
+
+  async function renderAdminGroupsTab() {
+    const el = document.getElementById('admin-tab-groups');
+    el.innerHTML = '<p class="text-sm text-outline">Loading…</p>';
+    const ugSnap = await get(ref(db, `userGroups/${me.uid}`));
+    const gids = ugSnap.val() ? Object.keys(ugSnap.val()) : [];
+    el.innerHTML = '';
+    for (const gid of gids) {
+      const gSnap = await get(ref(db, `groups/${gid}`));
+      if (!gSnap.exists()) continue;
+      const g = gSnap.val();
+      const isCur = gid === activeGroupId;
+      const link = (() => { const u = new URL(location.href); u.search = ''; u.searchParams.set('join', `${gid}:${g.inviteCode}`); return u.toString(); })();
+      const row = document.createElement('div');
+      row.className = `p-4 bg-surface-container-low rounded-xl border ${isCur ? 'border-primary/30' : 'border-outline-variant/10'}`;
+      row.innerHTML = `
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <p class="font-bold text-on-surface text-sm">${escHtml(g.name)}${isCur ? ' <span style="color:#f2be8c;font-size:9px">current</span>' : ''}</p>
+            <p class="text-xs text-outline">${g.members ? Object.keys(g.members).length : 0} members</p>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <input class="flex-1 bg-background border border-outline-variant/30 rounded-lg px-3 py-1.5 text-xs text-outline font-mono" readonly value="${escHtml(link)}"/>
+          <button class="copy-btn flex-shrink-0 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary text-xs font-bold rounded-lg" data-link="${escHtml(link)}">Copy</button>
+        </div>`;
+      el.appendChild(row);
+    }
+    el.querySelectorAll('.copy-btn').forEach(btn =>
+      btn.addEventListener('click', () => {
+        navigator.clipboard.writeText(btn.dataset.link).then(() => { btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 2000); }).catch(() => alert(btn.dataset.link));
+      })
+    );
+    const addBtn = document.createElement('button');
+    addBtn.className = 'w-full flex items-center justify-center gap-2 py-3 border border-dashed border-primary/30 rounded-xl text-primary hover:bg-primary/5 transition-all text-sm font-bold';
+    addBtn.innerHTML = '<span class="material-symbols-outlined text-base">add</span> Create New Group';
+    addBtn.addEventListener('click', () => {
+      closeAdminModal();
+      document.getElementById('new-group-name').value = '';
+      document.getElementById('create-group-modal').style.display = 'flex';
+    });
+    el.appendChild(addBtn);
   }
 
   // ── MY AVAILABILITY ────────────────────────────────────────────────────────
@@ -1129,7 +1454,7 @@ const firebaseConfig = {
       const isPending      = !!pendingSelections[ds];
       const isPendingRm    = pendingRemovals.has(ds);
 
-      const btn = document.createElement(past || weekend ? 'div' : 'button');
+      const btn = document.createElement(past ? 'div' : 'button');
       btn.className = 'day-cell';
 
       if (isPendingRm) {
@@ -1150,9 +1475,9 @@ const firebaseConfig = {
         btn.style.outline       = '1px solid #9c8e82';
         btn.style.outlineOffset = '-1px';
       } else {
-        btn.style.background = weekend ? 'transparent' : '#1f1f20';
+        btn.style.background = '#1f1f20';
       }
-      if (past || weekend) btn.style.opacity = weekend ? '0.25' : '0.3';
+      if (past) btn.style.opacity = '0.3';
 
       const numEl = document.createElement('span');
       numEl.className  = 'text-sm md:text-base font-headline font-bold';
@@ -1180,7 +1505,7 @@ const firebaseConfig = {
         lbl.style.color = 'rgba(242,190,140,0.7)';
         lbl.textContent = slotLabel(slots);
         btn.appendChild(lbl);
-      } else if (!past && !weekend) {
+      } else if (!past) {
         const dot = document.createElement('span');
         dot.className        = 'w-1 h-1 rounded-full mt-1';
         dot.style.background = '#c1ce91';
@@ -1188,7 +1513,7 @@ const firebaseConfig = {
         btn.appendChild(dot);
       }
 
-      if (!past && !weekend) {
+      if (!past) {
         btn.style.cursor = 'pointer';
         btn.addEventListener('click', () => handleDayClick(ds));
       }
@@ -1286,8 +1611,8 @@ const firebaseConfig = {
       const added   = Object.entries(pendingSelections);
       const removed = [...pendingRemovals];
       await Promise.all([
-        ...added.map(([ds, slots]) => set(ref(db, `availability/${ds}/${me.uid}`), slots)),
-        ...removed.map(ds => remove(ref(db, `availability/${ds}/${me.uid}`)))
+        ...added.map(([ds, slots]) => set(ref(db, `groups/${activeGroupId}/availability/${ds}/${me.uid}`), slots)),
+        ...removed.map(ds => remove(ref(db, `groups/${activeGroupId}/availability/${ds}/${me.uid}`)))
       ]);
 
       const myName     = me.displayName || me.email;
@@ -1348,7 +1673,7 @@ const firebaseConfig = {
     const sub = document.getElementById('av-status-sub');
     if (!cnt) {
       txt.textContent = 'No free days set';
-      sub.textContent = 'Tap any future weekday to select, then confirm.';
+      sub.textContent = 'Tap any future day to select, then confirm.';
     } else {
       txt.textContent = `${cnt} free day${cnt > 1 ? 's' : ''} upcoming`;
       sub.textContent = 'Confirmed. Members can view your free days.';
@@ -1395,8 +1720,6 @@ const firebaseConfig = {
     for (let d = 1; d <= days; d++) {
       const ds  = fmt(htYear, htMonth, d);
       if (ds < todStr) continue;
-      const dow = new Date(htYear, htMonth, d).getDay();
-      if (dow === 0 || dow === 6) continue;
       const c = Object.keys(availability[ds] || {}).length;
       if (c > maxCount) { maxCount = c; bestDate = ds; }
     }
@@ -1405,11 +1728,9 @@ const firebaseConfig = {
 
     for (let d = 1; d <= days; d++) {
       const ds      = fmt(htYear, htMonth, d);
-      const dow     = new Date(htYear, htMonth, d).getDay();
-      const weekend = dow === 0 || dow === 6;
       const past    = ds < todStr;
       const count   = Object.keys(availability[ds] || {}).length;
-      const isSync  = !weekend && !past && maxCount >= 2 && ds === bestDate;
+      const isSync  = !past && maxCount >= 2 && ds === bestDate;
 
       const cell = document.createElement('button');
       cell.className = 'heat-cell';
@@ -1419,7 +1740,7 @@ const firebaseConfig = {
         cell.style.boxShadow     = '0 0 16px rgba(242,190,140,0.3)';
         cell.style.outline       = '2px solid rgba(242,190,140,0.3)';
         cell.style.outlineOffset = '2px';
-      } else if (weekend || past) {
+      } else if (past) {
         cell.style.background = '#0e0e0f';
       } else {
         cell.style.background = heatColor(count, team);
@@ -1429,7 +1750,7 @@ const firebaseConfig = {
       numEl.style.fontSize   = 'clamp(9px, 2vw, 12px)';
       numEl.style.fontFamily = 'Manrope, sans-serif';
       numEl.style.fontWeight = '700';
-      numEl.style.color = isSync ? '#482904' : (weekend || past ? '#353436' : '#e5e2e3');
+      numEl.style.color = isSync ? '#482904' : (past ? '#353436' : '#e5e2e3');
       numEl.textContent = d;
       cell.appendChild(numEl);
 
@@ -1438,7 +1759,7 @@ const firebaseConfig = {
         lbl.style.cssText = 'font-size:7px;font-weight:900;text-transform:uppercase;color:#482904;letter-spacing:-0.02em';
         lbl.textContent = 'Sync';
         cell.appendChild(lbl);
-      } else if (count > 0 && !weekend) {
+      } else if (count > 0) {
         const cnt = document.createElement('span');
         cnt.style.cssText = `font-size:7px;font-weight:700;color:${past ? '#353436' : '#9c8e82'}`;
         cnt.textContent = count;
@@ -1459,8 +1780,6 @@ const firebaseConfig = {
     for (let d = 1; d <= days; d++) {
       const ds  = fmt(htYear, htMonth, d);
       if (ds < todStr) continue;
-      const dow = new Date(htYear, htMonth, d).getDay();
-      if (dow === 0 || dow === 6) continue;
       const c = Object.keys(availability[ds] || {}).length;
       if (c > maxCount) { maxCount = c; bestDate = ds; }
     }
@@ -1469,14 +1788,14 @@ const firebaseConfig = {
       const bd  = new Date(bestDate + 'T12:00:00');
       const pct = Math.round((maxCount / team) * 100);
       document.getElementById('sp-date').textContent    = `${MONTHS[bd.getMonth()]} ${bd.getDate()}`;
-      document.getElementById('sp-desc').textContent    = `${maxCount} of ${team} orang free — paling ramai for this month.`;
+      document.getElementById('sp-desc').textContent    = `${maxCount} of ${team} people free — most overlap this month.`;
       document.getElementById('sp-pct').textContent     = `${pct}%`;
       document.getElementById('sp-bar').style.width     = `${pct}%`;
       const peak = getPeakTime(bestDate);
-      const peakStr = peak ? ` Best time: ${peak.slot.charAt(0).toUpperCase()+peak.slot.slice(1)} (${peak.count} orang).` : '';
+      const peakStr = peak ? ` Best time: ${peak.slot.charAt(0).toUpperCase()+peak.slot.slice(1)} (${peak.count} people).` : '';
       document.getElementById('sp-insight').textContent = maxCount >= 2
-        ? `"${maxCount} orang free on the ${ordinal(bd.getDate())}.${peakStr} Mcm boleh jadi je ni.."`
-        : '"Jgn lupa update bila korg free!"';
+        ? `"${maxCount} people free on the ${ordinal(bd.getDate())}.${peakStr} This could actually happen."`
+        : '"Update your free days first so we can find an overlap."';
 
       const ac = document.getElementById('sp-avatars');
       ac.innerHTML = '';
@@ -1495,10 +1814,10 @@ const firebaseConfig = {
       btn.onclick = () => { selectedDate = bestDate; goView('daily'); };
     } else {
       document.getElementById('sp-date').textContent        = '–';
-      document.getElementById('sp-desc').textContent        = 'Takde data lagi. Semua busy ah tu..';
+      document.getElementById('sp-desc').textContent        = 'No data yet for this month.';
       document.getElementById('sp-pct').textContent         = '–';
       document.getElementById('sp-bar').style.width         = '0%';
-      document.getElementById('sp-insight').textContent     = 'Update bile korg free dulu baru boleh tengok overlap.';
+      document.getElementById('sp-insight').textContent     = 'Update your free days first before we can find an overlap.';
       document.getElementById('sp-btn').style.display       = 'none';
       document.getElementById('sp-avatars').innerHTML       = '';
     }
@@ -1515,15 +1834,13 @@ const firebaseConfig = {
     for (let d = 1; d <= days; d++) {
       const ds  = fmt(htYear, htMonth, d);
       if (ds < todStr) continue;
-      const dow = new Date(htYear, htMonth, d).getDay();
-      if (dow === 0 || dow === 6) continue;
       const c = Object.keys(availability[ds] || {}).length;
       if (c >= 2) candidates.push({ ds, c });
     }
     candidates.sort((a, b) => b.c - a.c);
 
     if (!candidates.length) {
-      el.innerHTML = '<p class="text-sm text-outline italic px-1">Takde hari yang ramai free lagi. Korang update dulu lah.</p>';
+      el.innerHTML = '<p class="text-sm text-outline italic px-1">No days with multiple people free yet. Update yours first.</p>';
       return;
     }
 
@@ -1539,8 +1856,8 @@ const firebaseConfig = {
             ${d.getDate()}
           </div>
           <div>
-            <h4 class="text-sm font-bold text-on-surface">${top ? '🔥 Best Day to Lepak' : DAYS_F[d.getDay()]}</h4>
-            <p class="text-xs text-outline">${c} orang free · ${DAYS_F[d.getDay()]}, ${MONTHS_S[d.getMonth()]} ${d.getDate()}${(() => { const pk = getPeakTime(ds); return pk ? ` · ${pk.slot.charAt(0).toUpperCase()+pk.slot.slice(1)}` : ''; })()}</p>
+            <h4 class="text-sm font-bold text-on-surface">${top ? '🔥 Best Day to Hang Out' : DAYS_F[d.getDay()]}</h4>
+            <p class="text-xs text-outline">${c} people free · ${DAYS_F[d.getDay()]}, ${MONTHS_S[d.getMonth()]} ${d.getDate()}${(() => { const pk = getPeakTime(ds); return pk ? ` · ${pk.slot.charAt(0).toUpperCase()+pk.slot.slice(1)}` : ''; })()}</p>
           </div>
         </div>
         <div class="flex items-center gap-4 md:gap-8">
@@ -1633,14 +1950,14 @@ const firebaseConfig = {
     el.innerHTML = '';
     const ordered = [...freeIds.map(u => [u, true]), ...unsetIds.map(u => [u, false])];
     if (!ordered.length) {
-      el.innerHTML = '<p class="text-sm text-outline italic px-1">Takde members lagi. Suruh yg lain sign in lah.</p>';
+      el.innerHTML = '<p class="text-sm text-outline italic px-1">No members yet. Share the invite link to get your crew in.</p>';
       return;
     }
     ordered.forEach(([uid, isFree]) => {
       const u = allUsers[uid]; if (!u) return;
       const isMe    = uid === me?.uid;
       const slots   = isFree ? getSlots(selectedDate, uid) : null;
-      const sLabel  = slots ? (slots.am && slots.pm ? 'Full Day' : slots.am ? 'AM Only' : 'PM Only') : 'Unset';
+      const sLabel  = slots ? slotLabel(slots) : 'Unset';
       const sColor  = isFree ? '#c1ce91' : '#9c8e82';
 
       const card = document.createElement('div');
@@ -1710,12 +2027,12 @@ const firebaseConfig = {
   function renderBrew(freeIds, unsetIds, d) {
     const name = DAYS_F[d.getDay()];
     const msgs = [
-      `"Ada ${freeIds.length} orang free on ${name}. ${freeIds.length >= 3 ? 'Kasi jadi, jangan last minute paitao.' : freeIds.length >= 2 ? 'Try paksa yang lain join.' : 'Sorang je? Sedih.'}"`,
-      `"${name}: ${freeIds.length} free, ${unsetIds.length} lagi belum update. Busy ke malas nak reply? Hmm.."`,
-      `"${freeIds.length} orang dah confirm free ${name}."`,
+      `"${freeIds.length} ${freeIds.length === 1 ? 'person' : 'people'} free on ${name}. ${freeIds.length >= 3 ? 'Enough to make it happen.' : freeIds.length >= 2 ? 'Try pulling in the others.' : 'Just one? Might be a solo outing.'}"`,
+      `"${name}: ${freeIds.length} free, ${unsetIds.length} still haven't updated. Busy or just ignoring the chat?"`,
+      `"${freeIds.length} confirmed free on ${name}. Now someone just needs to actually plan something."`,
     ];
     document.getElementById('dd-brew').textContent = freeIds.length === 0
-      ? '"Belum ada yang free lagi.. Semua busy kot."'
+      ? '"Nobody has marked free yet. Someone has to go first."'
       : msgs[d.getDate() % msgs.length];
   }
 
@@ -1745,8 +2062,6 @@ const firebaseConfig = {
     const out   = [];
     for (let i = 0; i < 60; i++) {
       const d = new Date(); d.setDate(d.getDate() + i);
-      const dow = d.getDay();
-      if (dow === 0 || dow === 6) continue;
       const ds = fmtFromDate(d);
       if (seen.has(ds)) continue; seen.add(ds);
       out.push({ ds, count: Object.keys(availability[ds] || {}).length });
@@ -1814,14 +2129,14 @@ const firebaseConfig = {
 
       const pk = getPeakTime(selectedLepakDate);
       const suggestedTime = pk ? `${pk.slot.charAt(0).toUpperCase()+pk.slot.slice(1)}` : '';
-      await push(ref(db, 'lepak'), {
+      await push(ref(db, `groups/${activeGroupId}/lepak`), {
         name, date: selectedLepakDate, suggestedTime,
         createdBy: me.uid, createdByName: myName,
         createdAt: Date.now()
       });
 
       const others = Object.keys(allUsers).filter(uid => uid !== me.uid);
-      for (const uid of others) await sendNotif(uid, `${myName} initiated "${name}" on ${dateStr}`, 'lepak_created');
+      for (const uid of others) await sendNotif(uid, `${myName} planned "${name}" on ${dateStr}`, 'lepak_created');
       await sendNotif(me.uid, `You created "${name}" on ${dateStr}`, 'self_lepak');
 
       document.getElementById('lepak-modal').classList.remove('open');
@@ -1843,8 +2158,8 @@ const firebaseConfig = {
       el.innerHTML = `
         <div class="flex flex-col items-center justify-center py-20 text-center">
           <span class="material-symbols-outlined text-5xl text-outline mb-4">celebration</span>
-          <p class="font-headline text-xl font-bold text-on-surface mb-2">No sessions yet</p>
-          <p class="text-sm text-on-surface-variant">Initiate a lepak plan to get started.</p>
+          <p class="font-headline text-xl font-bold text-on-surface mb-2">No hangouts yet</p>
+          <p class="text-sm text-on-surface-variant">Plan a hangout to get started.</p>
         </div>`;
       return;
     }
@@ -1866,7 +2181,7 @@ const firebaseConfig = {
           <div class="min-w-0">
             <h3 class="font-headline font-bold text-on-surface text-base md:text-lg truncate">${escHtml(plan.name)}</h3>
             <p class="text-xs text-on-surface-variant mt-0.5">${DAYS_F[d.getDay()]}${plan.suggestedTime ? ` · ${plan.suggestedTime}` : ''} · by ${escHtml(plan.createdByName)}</p>
-            <p class="text-xs text-outline mt-1">${freeCount} of ${team} orang free hari ni</p>
+            <p class="text-xs text-outline mt-1">${freeCount} of ${team} people free that day</p>
           </div>
         </div>
         <div class="flex items-center gap-2 flex-shrink-0">
@@ -1891,7 +2206,7 @@ const firebaseConfig = {
     el.querySelectorAll('.del-plan-btn').forEach(btn =>
       btn.addEventListener('click', async () => {
         if (confirm('Delete this session?'))
-          await remove(ref(db, `lepak/${btn.dataset.id}`));
+          await remove(ref(db, `groups/${activeGroupId}/lepak/${btn.dataset.id}`));
       })
     );
   }
@@ -1911,7 +2226,7 @@ const firebaseConfig = {
       <div class="flex items-center gap-3">
         <span class="material-symbols-outlined text-primary">celebration</span>
         <div class="flex-1 min-w-0">
-          <span class="text-[10px] font-bold uppercase tracking-widest text-primary">Next Lepak</span>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-primary">Next Hangout</span>
           <p class="text-sm font-bold text-on-surface truncate">${escHtml(next.name)}</p>
           <p class="text-xs text-on-surface-variant">${DAYS_F[d.getDay()]}, ${MONTHS_S[d.getMonth()]} ${d.getDate()}</p>
         </div>
