@@ -26,6 +26,7 @@
 - **Invite links** — share a link, admin approves who gets in
 - **PWA** — installable on mobile, works offline
 
+<p align="right">(<a href="#kumpul">back to top</a>)</p>
 ---
 
 ## How it works
@@ -36,6 +37,7 @@
 4. Everyone marks their free days
 5. Pick the day with the most overlap and plan the hangout
 
+<p align="right">(<a href="#kumpul">back to top</a>)</p>
 ---
 
 ## Development Plans
@@ -43,6 +45,7 @@
 - [x] Enable multi-group function
 - [ ] Polling Feature (For location/activities)
 
+<p align="right">(<a href="#kumpul">back to top</a>)</p>
 ---
 
 ## Tech
@@ -53,5 +56,6 @@
 - Tailwind CSS (CDN)
 - PWA (manifest + service worker)
 
+<p align="right">(<a href="#kumpul">back to top</a>)</p>
 ---
 
